@@ -16,9 +16,6 @@
   <p>You have eaten <span id="gumEaten"></span> gum</p>
 
   <p id="rank"></p>
-  <br>
-  <button onClick="save()">save game</button>
-  <button onClick="load()">load save</button>
 
   <h6>pre-alpha v3</h6>
   <script>
@@ -71,15 +68,6 @@
       } else {
         document.getElementById("rank").innerHTML = "You have surpassed all limitations. You are no longer confined by mortality. You have become indestructible. You are the gum god."
       }
-    }
-
-    function save() {
-      document.cookie = gum = number(gum); money = number(money); gumEaten = number(gumEaten)
-    }
-
-    function load() {
-      gum = document.cookie
-      document.getElementById("gum").innerHTML = gum;
     }
   </script>
 	</body>
