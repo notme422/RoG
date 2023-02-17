@@ -2,39 +2,84 @@
 
 <html>
 	<head>
-		<title>School of Loathing</title>
+		<title>Rule of Gum</title>
 	</head>
 
 	<body>
-  <h1>School of Loathing</h1>
-  <button onClick="buyGum()">buy gum</button>
-  <button onClick="sellGum()">sell gum</button>
+  <h1>Rule of Gum</h1>
+  <button onClick="buy()">buy gum</button>
+  <button onClick="sell()">sell gum</button>
+  <button onClick="eat()">eat gum</button>
+
 	<p>You have <span id="gum"></span> gum</p>
   <p>You have $<span id="munny"></span></p>
-  <h6>pre-alpha v2</h6>
+  <p>You have eaten <span id="gumEaten"></span> gum</p>
+
+  <p id="rank"></p>
+  <br>
+  <button onClick="save()">save game</button>
+  <button onClick="load()">load save</button>
+
+  <h6>pre-alpha v3</h6>
   <script>
 	  var gum = 0;
+    var gumEaten = 0;
     var munny = 1
 
     document.getElementById("munny").innerHTML = munny;
     document.getElementById("gum").innerHTML = gum;
+    document.getElementById("gumEaten").innerHTML = gumEaten;
 
-	  function buyGum() {
+	  function buy() {
       if (munny >= 1) {
-		    gum += 10
-        munny -= 1
+		    gum += 10;
+        munny -= 1;
 		    document.getElementById("gum").innerHTML = gum;
         document.getElementById("munny").innerHTML = munny;
       }
     }
 
-    function sellGum() {
+    function sell() {
       for (let i=0; i < gum;) {
-        munny += 0.25
-        gum -= 1
+        munny += 0.25;
+        gum -= 1;
       }
       document.getElementById("gum").innerHTML = gum;
       document.getElementById("munny").innerHTML = munny;
+    }
+
+    function eat() {
+      if (gum > 0) {
+      gum -= 1
+      gumEaten += 1
+      document.getElementById("gum").innerHTML = gum;
+      document.getElementById("gumEaten").innerHTML = gumEaten;
+      }
+
+      if (gumEaten < 10) {
+        document.getElementById("rank").innerHTML = "You are new to gum";
+      } else if (gumEaten < 50) {
+        document.getElementById("rank").innerHTML = "You are a standard gum enjoyer";
+      } else if (gumEaten < 100) {
+        document.getElementById("rank").innerHTML = "You chew a lot of gum";
+      } else if (gumEaten < 500) {
+        document.getElementById("rank").innerHTML = "You are a gum connoisseur"
+      } else if (gumEaten < 1000) {
+        document.getElementById("rank").innerHTML = "You are a master of gum"
+      } else if (gumEaten < 10000) {
+        document.getElementById("rank").innerHTML = "You are the world's #1 gum eater"
+      } else {
+        document.getElementById("rank").innerHTML = "You have surpassed all limitations. You are no longer confined by mortality. You have become indestructible. You are the gum god."
+      }
+    }
+
+    function save() {
+      document.cookie = gum = number(gum); money = number(money); gumEaten = number(gumEaten)
+    }
+
+    function load() {
+      gum = document.cookie
+      document.getElementById("gum").innerHTML = gum;
     }
   </script>
 	</body>
