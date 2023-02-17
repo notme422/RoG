@@ -9,13 +9,14 @@
 		<h1>School of Loathing</h1>
     <h2>pre-alpha v1</h2>
     <br>
-    <button onClick="++g">gum generator</button>
+    <button onClick="addGum()">gum generator</button>
 	<p>You have <span id="gum"></span> gum!</p>
   <script>
 	  var g = 0;
-	  while (true) {
-			document.getElementById("gum").innerHTML = g;
-	  }
+	  function addGum() {
+		  ++g
+		  document.getElementById("gum").innerHTML = g;
+    }
   </script>
 	</body>
 </html>
