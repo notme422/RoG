@@ -17,7 +17,7 @@
 
   <p id="rank"></p>
 
-  <h6>pre-alpha v3</h6>
+  <h6>pre-alpha v4</h6>
 
   <script>
 
@@ -30,19 +30,31 @@
     document.getElementById("gumEaten").innerHTML = gumEaten;
 
 	  function buy() {
-      if (munny >= 1) {
-		    gum += 10;
-        munny -= 1;
-		    document.getElementById("gum").innerHTML = gum;
-        document.getElementById("munny").innerHTML = munny;
+      if (event.shiftKey == false) {
+        if (munny >= 1) {
+		      gum += 10;
+          munny -= 1;
+		      document.getElementById("gum").innerHTML = gum;
+          document.getElementById("munny").innerHTML = munny;
+        }
+      } else for (let i=1; munny > i;) {
+          gum += 10;
+          munny -= 1;
+          document.getElementById("gum").innerHTML = gum;
+          document.getElementById("munny").innerHTML = munny;
       }
     }
 
     function sell() {
-      for (let i=0; i < gum;) {
-        munny += 0.25;
-        gum -= 1;
-      }
+      if (event.shiftKey == false) {
+        for (let i=0; gum > i;) {
+          munny += 0.25;
+          gum -= 1;
+        }
+       } else if (gum > 0) {
+         munny += 0.25;
+         gum -= 1;
+       }
       document.getElementById("gum").innerHTML = gum;
       document.getElementById("munny").innerHTML = munny;
     }
