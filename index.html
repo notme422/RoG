@@ -6,16 +6,35 @@
 	</head>
 
 	<body>
-		<h1>School of Loathing</h1>
-    <h2>pre-alpha v1</h2>
-    <br>
-    <button onClick="addGum()">gum generator</button>
-	<p>You have <span id="gum"></span> gum!</p>
+  <h1>School of Loathing</h1>
+  <button onClick="buyGum()">buy gum</button>
+  <button onClick="sellGum()">sell gum</button>
+	<p>You have <span id="gum"></span> gum</p>
+  <p>You have $<span id="munny"></span></p>
+  <h6>pre-alpha v2</h6>
   <script>
-	  var g = 0;
-	  function addGum() {
-		  ++g
-		  document.getElementById("gum").innerHTML = g;
+	  var gum = 0;
+    var munny = 1
+
+    document.getElementById("munny").innerHTML = munny;
+    document.getElementById("gum").innerHTML = gum;
+
+	  function buyGum() {
+      if (munny >= 1) {
+		    gum += 10
+        munny -= 1
+		    document.getElementById("gum").innerHTML = gum;
+        document.getElementById("munny").innerHTML = munny;
+      }
+    }
+
+    function sellGum() {
+      for (let i=0; i < gum;) {
+        munny += 0.25
+        gum -= 1
+      }
+      document.getElementById("gum").innerHTML = gum;
+      document.getElementById("munny").innerHTML = munny;
     }
   </script>
 	</body>
