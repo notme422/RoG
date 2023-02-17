@@ -37,9 +37,9 @@
 		      document.getElementById("gum").innerHTML = gum;
           document.getElementById("munny").innerHTML = munny;
         }
-      } else for (let i=1; munny > i;) {
-          gum += 10;
-          munny -= 1;
+      } else if (munny >= 10) {
+          gum += 100;
+          munny -= 10;
           document.getElementById("gum").innerHTML = gum;
           document.getElementById("munny").innerHTML = munny;
       }
