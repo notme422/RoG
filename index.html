@@ -15,14 +15,8 @@
   <p>You have $<span id="munny"></span></p>
   <p>You have eaten <span id="gumEaten"></span> gum</p>
 
-  <p id="rank"></p>
-  <br>
-  <button onClick="save()">save game</button>
-  <button onClick="load()">load save</button>
-
   <h6>pre-alpha v3</h6>
-  
-  <script src="https://xtrp.github.io/ciphers.js/ciphers.js"></script>
+
   <script>
 	  var gum = 0;
     var gumEaten = 0;
@@ -73,10 +67,6 @@
       } else {
         document.getElementById("rank").innerHTML = "You have surpassed all limitations. You are no longer confined by mortality. You have become indestructible. You are the gum god."
       }
-    }
-
-    function save() {
-      alert("Your save code is " + Cipher.encode(ROT13,gum) + Cipher.encode(ROT13,money) + Cipher.encode(ROT13,gumEaten))
     }
   </script>
 	</body>
