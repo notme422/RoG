@@ -10,9 +10,10 @@
     <h2>pre-alpha v1</h2>
     <br>
     <button onClick="++g">gum generator</button>
-    <p>You have <var>g</var> gum!</p>
+	<p>You have <span id="gum"></span> gum!</p>
   <script>
-    var g = 0;
+	  var g = 0;
+	  document.getElementById("gum").innerHTML = g;
   </script>
 	</body>
 </html>
