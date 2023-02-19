@@ -1,49 +1,49 @@
 <!doctype html>
 
 <html>
-	<head>
-		<title>Rule of Gum</title>
-	</head>
+    <head>
+        <title>Rule of Gum</title>
+    </head>
 
-	<body>
+    <body>
         <span style="text-align:center;"><h1>Rule of Gum</h1></span>
         <span style="text-align:left;">
         <button onClick="buy();">buy gum</button>
         <button onClick="sell();">sell gum</button>
         <button onClick="eat();">eat gum</button>
 
-	    <p>You have <span id="gum"></span> gum</p>
+        <p>You have <span id="gum"></span> gum</p>
         <p>You have $<span id="munny"></span></p>
         <p>You have eaten <span id="gumEaten"></span> gum</p>
 
         <p id="rank"></p>
         </span>
 
-        
+
         <!--
         0-999 = 0.25
         1000-9999 = 0.50
         10000+ = 1
         -->
         <span style="text-align:right;">
-        <p id="books"><button onClick="if (munny >= 20) {gumPrice += 0.25; munny -= 20; update(); books.remove();}">Buy business books ($20)</button></p>
-        <p id="ads"><button onClick="if (munny >= 100) {gumPrice += 0.25; munny -= 100; update(); ads.remove();}">Start advertising ($100)</button></p>
-        <p id="expert"><button onClick="if (gumEaten >= 100) {gumPrice += 0.25; update(); expert.remove();}">Advertise your expertise (100 gum eaten)</button></p>
-        <p id="newsAds"><button onClick="if (munny >= 100) {gumPrice += 0.25; munny -= 100; update(); newsAds.remove();}">Get an ad in the school newspaper ($100)</button></p>
-        <p id="p_ads"><button onClick="if (munny >= 500) {gumPrice += 0.25; munny -= 500; update(); p_ads.remove();}">Personalize advertising ($500)</button></p>
-        <p id="computer"><button onClick="if (munny >= 1000) {gumPrice += 0.50; munny -= 1000; update(); computer.remove();}">Buy a computer ($1,000)</button></p>
-        <p id="college"><button onClick="if (munny >= 10000) {gumPrice += 1; munny -= 10000; update(); college.remove();}">Go to college ($10,000)</button></p>
+        <p><button id="books" onClick="if (munny >= 50) {gumPrice += 0.25; munny -= 50; update(); books.remove();}">Buy business books ($50)</button></p>
+        <p><button id="ads" onClick="if (munny >= 100) {gumPrice += 0.25; munny -= 100; update(); ads.remove(); unlockAds();}">Make posters and pamphlets ($100)</button></p>
+        <p><button id="expert" onClick="if (gumEaten >= 500 && adsBought == true) {gumPrice += 0.25; update(); expert.remove();}">??? (requires ads)</button></p>
+        <p><button id="newsAds" onClick="if (munny >= 100) {gumPrice += 0.25; munny -= 100; update(); newsAds.remove(); unlockAds();}">Get an ad in the school newspaper ($100)</button></p>
+        <p><button id="p_ads" onClick="if (munny >= 500 && adsBought == true) {gumPrice += 0.25; munny -= 500; update(); p_ads.remove();}">??? (required ads)</button></p>
+        <p><button id="computer" onClick="if (munny >= 1000) {gumPrice += 0.50; munny -= 1000; update(); computer.remove();}">Buy a computer ($1,000)</button></p>
+        <p><button id="college" onClick="if (munny >= 50000) {gumPrice += 1; munny -= 50000; update(); college.remove();}">Go to college ($50,000)</button></p>
         <p><button onClick="if (munny >= 0.25) {munny -= 0.25; update();}">Throw a quarter in a fire</button></p>
         <p>You are currently selling gum for $<i id="gumPrice">0.25</i> a piece</p>
         </span>
 
         <p><button onClick="localStorage.setItem('munny', munny); localStorage.setItem('gum', gum);">Save game</button></p>
-        <p><button onClick="gum = localStorage.getItem('gum'); munny = localStorage.getItem('munny'); update();">Load save</button></p>
+        <p><button onClick="gum = parseInt(localStorage.getItem('gum')); munny = parseInt(localStorage.getItem('munny')); update();">Load save</button></p>
 
-        <h6>last update: feb 18</h6>
+        <h6>last update: feb 19</h6>
 
-  <script>
-    
+    <script>
+
     const books = document.getElementById("books");
     const ads = document.getElementById("ads");
     const expert = document.getElementById("expert");
@@ -51,7 +51,8 @@
     const p_ads = document.getElementById("p_ads");
     const computer = document.getElementById("computer");
     const college = document.getElementById("college");
-    
+
+    var adsBought = false
     var gum = 0;
     var gumEaten = 0;
     var gumPrice = 0.25;
@@ -67,7 +68,13 @@
         document.getElementById("gumEaten").innerHTML = gumEaten;
         document.getElementById("gumPrice").innerHTML = gumPrice;
     }
-    
+      
+    function unlockAds() {
+        adsBought = true;
+        document.getElementById('expert').innerHTML = 'Advertise your expertise (500 gum eaten)';
+        document.getElementById('p_ads').innerHTML = 'Personalize advertising ($500)';
+    }
+
     function buy() {
         if (event.shiftKey == false) {
         if (munny >= 1) {
@@ -124,6 +131,6 @@
         document.getElementById("gumPrice").innerHTML = gumPrice;
       }
     }
-  </script>
-	</body>
+    </script>
+    </body>
 </html>
