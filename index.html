@@ -12,11 +12,14 @@
         <button onClick="sell();">sell gum</button>
         <button onClick="eat();">eat gum</button>
 
+        <p id="event"></p>
+
         <p>You have <span id="gum"></span> gum</p>
         <p>You have $<span id="munny"></span></p>
         <p>You have eaten <span id="gumEaten"></span> gum</p>
 
         <p id="rank"></p>
+        <p id="randEvent"></p>
         </span>
 
 
@@ -30,17 +33,17 @@
         <p><button id="ads" onClick="if (munny >= 100) {gumPrice += 0.25; munny -= 100; update(); ads.remove(); unlockAds();}">Make posters and pamphlets ($100)</button></p>
         <p><button id="expert" onClick="if (gumEaten >= 500 && adsBought == true) {gumPrice += 0.25; update(); expert.remove();}">??? (requires ads)</button></p>
         <p><button id="newsAds" onClick="if (munny >= 100) {gumPrice += 0.25; munny -= 100; update(); newsAds.remove(); unlockAds();}">Get an ad in the school newspaper ($100)</button></p>
-        <p><button id="p_ads" onClick="if (munny >= 500 && adsBought == true) {gumPrice += 0.25; munny -= 500; update(); p_ads.remove();}">??? (required ads)</button></p>
+        <p><button id="p_ads" onClick="if (munny >= 500 && adsBought == true) {gumPrice += 0.25; munny -= 500; update(); p_ads.remove();}">??? (requires ads)</button></p>
         <p><button id="computer" onClick="if (munny >= 1000) {gumPrice += 0.50; munny -= 1000; update(); computer.remove();}">Buy a computer ($1,000)</button></p>
         <p><button id="college" onClick="if (munny >= 50000) {gumPrice += 1; munny -= 50000; update(); college.remove();}">Go to college ($50,000)</button></p>
         <p><button onClick="if (munny >= 0.25) {munny -= 0.25; update();}">Throw a quarter in a fire</button></p>
         <p>You are currently selling gum for $<i id="gumPrice">0.25</i> a piece</p>
         </span>
 
-        <p><button onClick="localStorage.setItem('munny', munny); localStorage.setItem('gum', gum);">Save game</button></p>
-        <p><button onClick="gum = parseInt(localStorage.getItem('gum')); munny = parseInt(localStorage.getItem('munny')); update();">Load save</button></p>
+        <p><button onClick="localStorage.setItem('munny', munny); localStorage.setItem('gum', gum); localStorage.setItem('gumEaten', gumEaten);">Save game</button></p>
+        <p><button onClick="gum = parseInt(localStorage.getItem('gum')); munny = parseInt(localStorage.getItem('munny')); gumEaten = parseInt(localStorage.getItem('gumEaten')); update();">Load save</button></p>
 
-        <h6>last update: feb 19</h6>
+        <h6>last update: feb 18</h6>
 
     <script>
 
@@ -61,7 +64,16 @@
     document.getElementById("munny").innerHTML = munny;
     document.getElementById("gum").innerHTML = gum;
     document.getElementById("gumEaten").innerHTML = gumEaten;
-      
+
+    
+    function randEvent() {
+        let rand = Math.random() * 3;
+        if (rand < 1) {
+            document.getElementById("event").innerHTML = "Someone steals your gum";
+            gum = gum * Math.random();
+        }
+    }
+    
     function update() {
         document.getElementById("munny").innerHTML = munny;
         document.getElementById("gum").innerHTML = gum;
